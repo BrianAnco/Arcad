@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="suave">#3A5068</color>
+    <color name="medio">#030305</color>
+    <color name="fuerte">#030305</color>
+    <color name="teal_200">#FFFFFFFF</color>
+    <color name="teal_700">#E269DD</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

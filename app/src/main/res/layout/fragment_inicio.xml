@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#04061B"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context=".inicio">
+
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <TextView
+            android:id="@+id/lblPopulares"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:background="@drawable/br"
+            android:fontFamily="@font/doppio_one"
+            android:letterSpacing="0.2"
+
+            android:paddingTop="7dp"
+            android:shadowColor="#7FFF5C"
+            android:shadowDx="0"
+            android:shadowDy="0"
+
+            android:shadowRadius="20"
+            android:text="CATEGORÍAS"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#7FFF5C"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewCategorias"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+        <TextView
+            android:id="@+id/lblPopulares2"
+            android:layout_width="190dp"
+            android:layout_height="40dp"
+            android:background="@drawable/br"
+            android:fontFamily="@font/doppio_one"
+            android:letterSpacing="0.2"
+
+            android:paddingTop="7dp"
+            android:shadowColor="#7FFF5C"
+            android:shadowDx="0"
+            android:shadowDy="0"
+
+            android:shadowRadius="20"
+            android:text="POPULARES"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#7FFF5C"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCategorias" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+
+            android:layout_height="315dp"
+            android:layout_gravity="bottom"
+
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblPopulares2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCategorias"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            app:layout_constraintBottom_toTopOf="@+id/lblPopulares2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblPopulares" />
+
+        <EditText
+            android:id="@+id/txtBuscar"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+
+            android:layout_marginStart="64dp"
+            android:ems="10"
+            android:fontFamily="@font/doppio_one"
+            android:hint="Buscar"
+            android:inputType="textPersonName"
+            android:paddingLeft="20dp"
+            android:textColor="#D8D8D8"
+            android:textColorHint="#D8D8D8"
+            android:textColorLink="#D8D8D8"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/fuerte"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/flogo" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="40dp"
+
+            android:layout_height="40dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginBottom="9dp"
+            android:background="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/lblPopulares"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtBuscar"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:srcCompat="@drawable/ic_baseline_search_24" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
