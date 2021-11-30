@@ -19,51 +19,63 @@
             android:id="@+id/lblPopulares"
             android:layout_width="190dp"
             android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="13dp"
+
             android:fontFamily="@font/doppio_one"
             android:letterSpacing="0.2"
-
             android:paddingTop="7dp"
             android:shadowColor="#FF4AE7"
+
             android:shadowDx="0"
             android:shadowDy="0"
-
             android:shadowRadius="20"
             android:text="CATEGORÍAS"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#FF4AE7"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="111dp"
-            tools:layout_editor_absoluteY="32dp" />
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewCategorias"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCategorias"
             android:layout_width="393dp"
             android:layout_height="100dp"
             android:layout_gravity="bottom"
-            tools:layout_editor_absoluteX="9dp"
-            tools:layout_editor_absoluteY="85dp" />
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="19dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblPopulares" />
 
         <TextView
             android:id="@+id/lblPopulares2"
             android:layout_width="190dp"
             android:layout_height="40dp"
+            android:layout_marginBottom="15dp"
             android:fontFamily="@font/doppio_one"
-            android:letterSpacing="0.2"
 
+            android:letterSpacing="0.2"
             android:paddingTop="7dp"
             android:shadowColor="#FF4AE7"
             android:shadowDx="0"
-            android:shadowDy="0"
 
+            android:shadowDy="0"
             android:shadowRadius="20"
             android:text="POPULARES"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="#FF4AE7"
             android:textSize="20sp"
-            tools:layout_editor_absoluteX="111dp"
-            tools:layout_editor_absoluteY="272dp" />
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -73,12 +85,16 @@
             android:layout_height="390dp"
             android:layout_gravity="bottom"
 
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="9dp"
             android:shadowColor="#FFFFFF"
             android:shadowDx="5"
             android:shadowDy="5"
             android:shadowRadius="10"
-            tools:layout_editor_absoluteX="9dp"
-            tools:layout_editor_absoluteY="327dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblPopulares2" />
 
         <EditText
             android:id="@+id/txtBuscar"
@@ -86,27 +102,34 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
 
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="1dp"
             android:ems="10"
             android:fontFamily="@font/doppio_one"
             android:hint="Buscar"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
-            android:textColor="#D8D8D8"
-            android:textColorHint="#D8D8D8"
-            android:textColorLink="#D8D8D8"
+            android:textColor="#000000"
+            android:textColorHint="#000000"
+            android:textColorLink="#000000"
             android:textSize="16sp"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="204dp" />
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton" />
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="40dp"
 
             android:layout_height="40dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="28dp"
             android:background="@color/black"
-            app:srcCompat="@drawable/ic_baseline_search_24"
-            tools:layout_editor_absoluteX="315dp"
-            tools:layout_editor_absoluteY="204dp" />
+            app:layout_constraintBottom_toTopOf="@+id/lblPopulares2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtBuscar"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewCategorias"
+            app:srcCompat="@drawable/ic_baseline_search_24" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

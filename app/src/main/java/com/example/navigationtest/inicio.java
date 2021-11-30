@@ -153,7 +153,7 @@ public class inicio extends Fragment {
                 Log.d("doc", "doc: "+doc);
                 Log.d("data", "data: "+data);
                 Log.d("size", ""+size);
-                for (int i = 0; i < 13; i++) {
+                for (int i = 0; i < 11; i++) {
 
                     String categoria = data.select("li.search-filters-fields-row")
                             .select("a")
