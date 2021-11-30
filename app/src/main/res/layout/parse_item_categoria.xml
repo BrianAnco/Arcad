@@ -28,7 +28,7 @@
             android:text="Title"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/teal_200"
+            android:textColor="#000000"
             android:textSize="16sp" />
 
         <ImageView
@@ -38,7 +38,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
             app:srcCompat="@drawable/ic_menu_gallery"
-            app:tint="#FFF" />
+            app:tint="#000000" />
 
     </com.google.android.material.card.MaterialCardView>
 

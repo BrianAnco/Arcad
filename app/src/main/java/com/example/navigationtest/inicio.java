@@ -39,8 +39,6 @@ public class inicio extends Fragment {
     private ParseAdapterCategoria adapterCategoria;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
     private ArrayList<ParseItemCategoria> parseItemsCategoria = new ArrayList<>();
-    private ProgressBar progressBar;
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -81,9 +79,6 @@ public class inicio extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        progressBar = getView().findViewById(R.id.progressBar);
-
 
         recyclerView = getView().findViewById(R.id.recyclerView);
 
@@ -133,15 +128,11 @@ public class inicio extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
-            progressBar.startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_in));
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            progressBar.setVisibility(View.GONE);
-            progressBar.startAnimation(AnimationUtils.loadAnimation(getContext(), android.R.anim.fade_out));
 
             adapter.notifyDataSetChanged();
             adapterCategoria.notifyDataSetChanged();
@@ -162,7 +153,7 @@ public class inicio extends Fragment {
                 Log.d("doc", "doc: "+doc);
                 Log.d("data", "data: "+data);
                 Log.d("size", ""+size);
-                for (int i = 0; i < 15; i++) {
+                for (int i = 0; i < 13; i++) {
 
                     String categoria = data.select("li.search-filters-fields-row")
                             .select("a")
