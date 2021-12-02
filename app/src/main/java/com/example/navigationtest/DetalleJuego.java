@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -63,7 +64,8 @@ public class DetalleJuego extends AppCompatActivity {
 
         webview.setWebViewClient(new WebViewClient() {
 
-            public void onPageStart(WebView view, String url){
+
+            public void onPageStarted(WebView view, String url, Bitmap favicon){
                 webview.setVisibility(View.INVISIBLE);
             }
 
@@ -77,6 +79,9 @@ public class DetalleJuego extends AppCompatActivity {
                         "document.getElementsByClassName('col-md-3 game__sidebar-wrapper')[0].style.display='none';" +
                         "document.getElementsByClassName('container banner-top-row')[0].style.display='none';" +
                         "document.getElementsByClassName('nav nav-tabs tabs')[0].style.display='none';" +
+                        "document.getElementsByClassName('nav nav-tabs tabs')[1].style.display='none';" +
+                        "document.getElementsByClassName('nav nav-tabs tabs')[2].style.display='none';" +
+                        "document.getElementsByClassName('nav nav-tabs tabs')[3].style.display='none';" +
                         "document.getElementsByClassName('banner-side')[0].style.display='none';" +
                         "document.getElementsByClassName('tab-content topclick-list')[0].style.display='none';" +
                         "document.getElementsByClassName('nav nav-tabs content-box-title tabs')[0].style.display='none';" +
@@ -88,9 +93,16 @@ public class DetalleJuego extends AppCompatActivity {
                         "document.getElementsByClassName('report-price-error')[0].style.display='none';" +
                         "document.getElementsByClassName('report-price-error price-summary')[0].style.display='none';" +
 
+                        "window.scrollBy(0,80);" +
+
                         "document.getElementsByClassName('tab-content filters-section')[0].style.display='none';" +
                         "document.getElementsByClassName('zendesk__container')[0].style.display='none';" +
 
+                        "document.getElementsByClassName('page-template')[0].style.backgroundImage='none';" +
+                        "document.getElementsByClassName('page-template')[0].style. background='none';" +
+                        "document.getElementsByClassName('page-template')[0].style.backgroundSize='10%';" +
+                        "document.getElementsByClassName('page-template')[0].style.backgroundPosition='0 0';" +
+                        "document.getElementsByClassName('container content')[0].style.height ='0px';" +
                         "})()");
 
                 webview.loadUrl("javascript:(function() { " +
@@ -101,6 +113,8 @@ public class DetalleJuego extends AppCompatActivity {
                 /*webview.loadUrl("javascript:(function() { " +
                         "document.getElementById('your_id').style.display='none';})()");*/
 
+                webview.setVisibility(View.INVISIBLE);
+                webview.setVisibility(View.VISIBLE);
             }
 
             @Override

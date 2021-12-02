@@ -107,7 +107,8 @@ public class inicio extends Fragment {
         recyclerViewCategoria.setLayoutManager(layoutManager);
         adapterCategoria = new ParseAdapterCategoria(parseItemsCategoria, getContext());
         recyclerViewCategoria.setAdapter(adapterCategoria);
-
+        ListarTodasCategorias();
+        ListarPopulares();
 
 
         Content content = new Content();
@@ -124,14 +125,18 @@ public class inicio extends Fragment {
                 recyclerView.removeAllViewsInLayout();
                 parseItems.clear();
 
-                if(busqueda.getText().toString()==""){
+                if(busqueda.getText().toString().equals("")){
                     String pop = "Populares";
                     palabra_clave.setText(pop.toUpperCase());
                     ListarPopulares();
+                    Content content2= new Content();
+                    content2.execute();
                 }
                 else{
                     ListarBusqueda(busqueda.getText().toString());
                     palabra_clave.setText(busqueda.getText().toString().toUpperCase());
+                    Content content2= new Content();
+                    content2.execute();
                 }
 
             }
@@ -177,7 +182,7 @@ public class inicio extends Fragment {
         protected Void doInBackground(Void... voids) {
 
             ListarTodasCategorias();
-            ListarPopulares();
+
 
 
             return null;
@@ -187,6 +192,8 @@ public class inicio extends Fragment {
 
     private void ListarPopulares(){
         try {
+
+
 
             String url = "https://cheapdigitaldownload.com/catalog/category-pc-games-all/page-1/";
 
