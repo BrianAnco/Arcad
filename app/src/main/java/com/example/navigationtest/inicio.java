@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,7 +23,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -42,12 +48,14 @@ public class inicio extends Fragment {
     private TextView busqueda;
     private ImageButton btnBuscar;
     private TextView palabra_clave;
+    private Button btnGernerar;
     private ParseAdapterCategoria adapterCategoria;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
     private ArrayList<ParseItemCategoria> parseItemsCategoria = new ArrayList<>();
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    HttpURLConnection conexion;
 
     public inicio() {
         // Required empty public constructor
@@ -111,10 +119,12 @@ public class inicio extends Fragment {
         ListarPopulares();
 
 
+
         Content content = new Content();
         content.execute();
         palabra_clave = getView().findViewById(R.id.lblPopulares2);
         btnBuscar = getView().findViewById(R.id.imageButton);
+        btnGernerar = getView().findViewById(R.id.button);
         busqueda = getView().findViewById(R.id.txtBuscar);
 
 
@@ -143,13 +153,20 @@ public class inicio extends Fragment {
         });
 
 
+        btnGernerar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScrapJuegos();
+
+            }
+        });
+
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
 
         Intent intent = getActivity().getIntent();
         String usuario_sesion = intent.getStringExtra("usuario_sesion");
@@ -173,20 +190,14 @@ public class inicio extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-
             adapter.notifyDataSetChanged();
             adapterCategoria.notifyDataSetChanged();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-
             ListarTodasCategorias();
-
-
-
             return null;
-
         }
     }
 
@@ -319,6 +330,131 @@ public class inicio extends Fragment {
 
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    public void ScrapJuegos(){
+        try {
+
+            int contador =0;
+            for (int k=15;k<=100;k++){
+
+                String url = "https://cheapdigitaldownload.com/catalog/category-pc-games-all/page-"+k+"/";
+                Document doc = Jsoup.connect(url).get();
+
+                Elements data = doc.select("li.search-results-row");
+
+                int size = data.size();
+                Log.d("doc", "doc: "+doc);
+                Log.d("data", "data: "+data);
+                Log.d("size", ""+size);
+                for (int i = 0; i < size; i++) {
+                    String imgUrl = data.select("li.search-results-row")
+                            .select("div.search-results-row-image-ratio")
+                            .eq(i)
+                            .attr("style");
+
+                    String title = data.select("li.search-results-row")
+                            .select("h2")
+                            .eq(i)
+                            .text();
+
+                    String description = data.select("li.search-results-row")
+                            .select("div.search-results-row-game-infos")
+                            .eq(i)
+                            .text();
+
+                    String precio = data.select("li.search-results-row")
+                            .select("div.search-results-row-price")
+                            .eq(i)
+                            .text();
+
+                    String durl = data.select("li.search-results-row")
+                            .select("a")
+                            .eq(i)
+                            .attr("href");
+
+                    String lanzamiento_solo = description.substring(0,4);
+                    String genero_solo = description.substring(7,description.length());
+
+                    imgUrl = imgUrl.replace(")","");
+                    StringBuffer nuevaImagen = new StringBuffer(imgUrl);
+                    nuevaImagen.replace(0,22,"");
+                    String imagenStr = nuevaImagen.toString();
+
+                    Log.e("Lanzamiento:",lanzamiento_solo);
+                    Log.e("Genero:",genero_solo);
+
+
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try{
+                                String miurl="http://192.168.1.46/Arcad_Registro_Juegos.php?j_nombre=" + URLEncoder.encode(title, "UTF-8") +
+                                        "&j_enlace=" + URLEncoder.encode(durl, "UTF-8") +
+                                        "&j_precio=" + URLEncoder.encode(precio, "UTF-8") +
+                                        "&j_lanzamiento=" + URLEncoder.encode(lanzamiento_solo, "UTF-8") +
+                                        "&j_genero=" + URLEncoder.encode(genero_solo, "UTF-8") +
+                                        "&j_urlimagen=" + URLEncoder.encode(imagenStr, "UTF-8");
+
+                                URL url=new URL(miurl);
+                                Log.e("registro_conexion",miurl);
+                                conexion = (HttpURLConnection) url.openConnection();
+                                Log.e("conexion: ", conexion+"");
+                                if (conexion.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                                    BufferedReader reader = new BufferedReader(new InputStreamReader(conexion.getInputStream()));
+                                    String linea = reader.readLine();
+                                    if (!linea.equals("OK\\n")) {
+                                        Log.e("registro_error_servicio","Error en servicio Web nueva");
+                                    }
+                                    else
+                                    {
+                                        Log.e("registro_exito","No hay error");
+                                        //Toast.makeText(this, "Inserción exitosa", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Log.e("mierror", conexion.getResponseMessage());
+                                }
+                                Log.e("responsecode", conexion.getResponseCode()+"");
+                                Log.e("urlconecction",HttpURLConnection.HTTP_OK+"");
+
+                            } catch (Exception e) { Log.e("registro_error", e.getMessage()+"Fallo al final del catch.", e);
+                            } finally { if (conexion!=null) conexion.disconnect();
+                            }
+
+                        }
+                    }).start();
+
+
+
+                    Thread.sleep(1000);
+
+
+                    Log.d("items", "origen: "+url+" . img: " + imgUrl + " . title: " + title + " . description: " + description + " . precio: " + precio+" . durl: "+durl);
+                }
+
+
+                Thread.sleep(2000);
+
+
+                Log.e("Url: ",url+"");
+                contador++;
+
+            }
+
+            Log.e("Contador: ",contador+"");
+
+
+
+
+
+
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }

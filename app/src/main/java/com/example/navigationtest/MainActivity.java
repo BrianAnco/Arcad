@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intentInicio = new Intent(MainActivity.this, inicio.class);
         intentInicio.putExtra("usuario_sesion",main_user.toString());
 
+        Intent intentFavoritos = new Intent(MainActivity.this, favoritos.class);
+        intentFavoritos.putExtra("usuario_sesion",main_user.toString());
+
     }
 
     @Override
