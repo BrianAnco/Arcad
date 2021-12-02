@@ -53,6 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblPopulares" />
 
+
         <TextView
             android:id="@+id/lblPopulares2"
             android:layout_width="190dp"
@@ -74,13 +75,13 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="393dp"
+            android:layout_width="375dp"
 
             android:layout_height="390dp"
             android:layout_gravity="bottom"
@@ -93,6 +94,7 @@
             android:shadowRadius="10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lblPopulares2" />
 
@@ -129,7 +131,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txtBuscar"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewCategorias"
-            app:srcCompat="@drawable/ic_baseline_search_24" />
+            app:srcCompat="@drawable/ic_baseline_search_24"
+            android:clickable="true"
+            android:onClick="BuscarJuegos"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

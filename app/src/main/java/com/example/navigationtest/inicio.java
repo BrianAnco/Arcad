@@ -1,5 +1,6 @@
 package com.example.navigationtest;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -36,6 +39,9 @@ public class inicio extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewCategoria;
     private ParseAdapter adapter;
+    private TextView busqueda;
+    private ImageButton btnBuscar;
+    private TextView palabra_clave;
     private ParseAdapterCategoria adapterCategoria;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
     private ArrayList<ParseItemCategoria> parseItemsCategoria = new ArrayList<>();
@@ -62,6 +68,7 @@ public class inicio extends Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
 
         return fragment;
     }
@@ -96,7 +103,7 @@ public class inicio extends Fragment {
 
         recyclerViewCategoria = getView().findViewById(R.id.recyclerViewCategorias);
         recyclerViewCategoria.setHasFixedSize(true);
-        //recyclerViewCategoria.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewCategoria.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewCategoria.setLayoutManager(layoutManager);
         adapterCategoria = new ParseAdapterCategoria(parseItemsCategoria, getContext());
         recyclerViewCategoria.setAdapter(adapterCategoria);
@@ -105,6 +112,30 @@ public class inicio extends Fragment {
 
         Content content = new Content();
         content.execute();
+        palabra_clave = getView().findViewById(R.id.lblPopulares2);
+        btnBuscar = getView().findViewById(R.id.imageButton);
+        busqueda = getView().findViewById(R.id.txtBuscar);
+
+
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recyclerView.removeAllViewsInLayout();
+                parseItems.clear();
+
+                if(busqueda.getText().toString()==""){
+                    String pop = "Populares";
+                    palabra_clave.setText(pop.toUpperCase());
+                    ListarPopulares();
+                }
+                else{
+                    ListarBusqueda(busqueda.getText().toString());
+                    palabra_clave.setText(busqueda.getText().toString().toUpperCase());
+                }
+
+            }
+        });
 
 
 
@@ -115,11 +146,15 @@ public class inicio extends Fragment {
                              Bundle savedInstanceState) {
 
 
+        Intent intent = getActivity().getIntent();
+        String usuario_sesion = intent.getStringExtra("usuario_sesion");
+        Log.e("usuario_sesion_inicio:",usuario_sesion);
 
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_inicio, container, false);
     }
+
 
 
 
@@ -141,86 +176,143 @@ public class inicio extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
 
+            ListarTodasCategorias();
+            ListarPopulares();
 
-            try {
-
-                String url = "https://www.clavecd.es/catalog/category-pc-games-all/";
-
-                Document doc = Jsoup.connect(url).get();
-
-                Elements data = doc.select("li.search-filters-fields-row");
-                int size = data.size();
-                Log.d("doc", "doc: "+doc);
-                Log.d("data", "data: "+data);
-                Log.d("size", ""+size);
-                for (int i = 0; i < 11; i++) {
-
-                    String categoria = data.select("li.search-filters-fields-row")
-                            .select("a")
-                            .eq(i)
-                            .text();
-
-                    parseItemsCategoria.add(new ParseItemCategoria(categoria));
-                    Log.d("items", "categoria: " + categoria);
-
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            try {
-
-                String url = "https://cheapdigitaldownload.com/catalog/category-pc-games-all/";
-
-                Document doc = Jsoup.connect(url).get();
-
-                Elements data = doc.select("li.search-results-row");
-
-                int size = data.size();
-                Log.d("doc", "doc: "+doc);
-                Log.d("data", "data: "+data);
-                Log.d("size", ""+size);
-                for (int i = 0; i < size; i++) {
-                    String imgUrl = data.select("li.search-results-row")
-                            .select("div.search-results-row-image-ratio")
-                            .eq(i)
-                            .attr("style");
-
-                    String title = data.select("li.search-results-row")
-                            .select("h2")
-                            .eq(i)
-                            .text();
-
-                    String description = data.select("li.search-results-row")
-                            .select("div.search-results-row-game-infos")
-                            .eq(i)
-                            .text();
-
-                    String precio = data.select("li.search-results-row")
-                            .select("div.search-results-row-price")
-                            .eq(i)
-                            .text();
-
-                    String durl = data.select("li.search-results-row")
-                            .select("a")
-                            .eq(i)
-                            .attr("href");
-
-                    parseItems.add(new ParseItem(imgUrl, title, description, precio, durl));
-                    Log.d("items", "img: " + imgUrl + " . title: " + title + " . description: " + description + " . precio: " + precio+" . durl: "+durl);
-                }
-
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
             return null;
 
         }
+    }
 
+    private void ListarPopulares(){
+        try {
+
+            String url = "https://cheapdigitaldownload.com/catalog/category-pc-games-all/page-1/";
+
+            Document doc = Jsoup.connect(url).get();
+
+            Elements data = doc.select("li.search-results-row");
+
+            int size = data.size();
+            Log.d("doc", "doc: "+doc);
+            Log.d("data", "data: "+data);
+            Log.d("size", ""+size);
+            for (int i = 0; i < size; i++) {
+                String imgUrl = data.select("li.search-results-row")
+                        .select("div.search-results-row-image-ratio")
+                        .eq(i)
+                        .attr("style");
+
+                String title = data.select("li.search-results-row")
+                        .select("h2")
+                        .eq(i)
+                        .text();
+
+                String description = data.select("li.search-results-row")
+                        .select("div.search-results-row-game-infos")
+                        .eq(i)
+                        .text();
+
+                String precio = data.select("li.search-results-row")
+                        .select("div.search-results-row-price")
+                        .eq(i)
+                        .text();
+
+                String durl = data.select("li.search-results-row")
+                        .select("a")
+                        .eq(i)
+                        .attr("href");
+
+                parseItems.add(new ParseItem(imgUrl, title, description, precio, durl));
+                Log.d("items", "img: " + imgUrl + " . title: " + title + " . description: " + description + " . precio: " + precio+" . durl: "+durl);
+            }
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void ListarTodasCategorias(){
+        try {
+
+            String url = "https://www.clavecd.es/catalog/category-pc-games-all/";
+
+            Document doc = Jsoup.connect(url).get();
+
+            Elements data = doc.select("li.search-filters-fields-row");
+            int size = data.size();
+            Log.d("doc", "doc: "+doc);
+            Log.d("data", "data: "+data);
+            Log.d("size", ""+size);
+            for (int i = 0; i < 11; i++) {
+
+                String categoria = data.select("li.search-filters-fields-row")
+                        .select("a")
+                        .eq(i)
+                        .text();
+
+                parseItemsCategoria.add(new ParseItemCategoria(categoria));
+                Log.d("items", "categoria: " + categoria);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void ListarBusqueda(String palabra){
+        try {
+
+            palabra=palabra.toLowerCase();
+            palabra=palabra.replace(" ","+");
+            String url = "https://cheapdigitaldownload.com/catalog/search-"+palabra+"/";
+
+            Document doc = Jsoup.connect(url).get();
+
+            Elements data = doc.select("li.search-results-row");
+
+            int size = data.size();
+            Log.d("doc", "doc: "+doc);
+            Log.d("data", "data: "+data);
+            Log.d("size", ""+size);
+            for (int i = 0; i < size; i++) {
+                String imgUrl = data.select("li.search-results-row")
+                        .select("div.search-results-row-image-ratio")
+                        .eq(i)
+                        .attr("style");
+
+                String title = data.select("li.search-results-row")
+                        .select("h2")
+                        .eq(i)
+                        .text();
+
+                String description = data.select("li.search-results-row")
+                        .select("div.search-results-row-game-infos")
+                        .eq(i)
+                        .text();
+
+                String precio = data.select("li.search-results-row")
+                        .select("div.search-results-row-price")
+                        .eq(i)
+                        .text();
+
+                String durl = data.select("li.search-results-row")
+                        .select("a")
+                        .eq(i)
+                        .attr("href");
+
+                parseItems.add(new ParseItem(imgUrl, title, description, precio, durl));
+                Log.d("items", "img: " + imgUrl + " . title: " + title + " . description: " + description + " . precio: " + precio+" . durl: "+durl);
+            }
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

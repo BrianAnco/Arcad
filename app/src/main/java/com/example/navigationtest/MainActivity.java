@@ -1,8 +1,12 @@
 package com.example.navigationtest;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -18,6 +22,8 @@ import com.example.navigationtest.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    //public static String usuario_sesion = getActivity().getIntent().
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -36,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -44,9 +52,18 @@ public class MainActivity extends AppCompatActivity {
                 R.id.inicio,R.id.categorias, R.id.favoritos)
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        Intent intent = getIntent();
+        String main_user = intent.getStringExtra("usuario_sesion");
+        Toast.makeText(this, "Bienvenido "+ main_user,Toast.LENGTH_SHORT).show();
+
+        Intent intentInicio = new Intent(MainActivity.this, inicio.class);
+        intentInicio.putExtra("usuario_sesion",main_user.toString());
+
     }
 
     @Override

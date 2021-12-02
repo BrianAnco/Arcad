@@ -57,6 +57,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentRegistro = new Intent(Login.this, Registro.class);
+
                 Login.this.startActivity(intentRegistro);
             }
 
@@ -100,6 +101,8 @@ public class Login extends AppCompatActivity {
             editor.putBoolean("onlogin", true);
             editor.apply();*/
             Intent i = new Intent(this, MainActivity.class);
+            i.putExtra("usuario_sesion",txtUsuario.getText().toString());
+            Log.e("usuario_sesion_login:",txtUsuario.getText().toString());
             startActivity(i);
             finish();
         } else

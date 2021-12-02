@@ -1,6 +1,7 @@
 package com.example.navigationtest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,12 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> 
         public void onClick(View view) {
             int position = getAdapterPosition();
             ParseItem parseItem = parseItems.get(position);
+            Intent intentDetalleJuego = new Intent(context,DetalleJuego.class);
+            intentDetalleJuego.putExtra("titulo",parseItem.getTitle());
+            intentDetalleJuego.putExtra("anio_genero",parseItem.getDescription());
+            intentDetalleJuego.putExtra("detalle_url",parseItem.getDurl());
+            intentDetalleJuego.putExtra("img_url",parseItem.getImgUrl());
+            context.startActivity(intentDetalleJuego);
         }
     }
 }

@@ -10,7 +10,7 @@
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.22135416666666666" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.3828125" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout-v28/parse_item_categoria.xml" value="0.36666666666666664" />
-        <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/activity_detalle_juego.xml" value="0.20520833333333333" />
+        <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/activity_detalle_juego.xml" value="0.33" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/activity_registro.xml" value="0.33" />
@@ -24,6 +24,7 @@
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/parse_item.xml" value="0.5" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/parse_item_categoria.xml" value="0.9" />
+        <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/layout/parse_item_tiendas.xml" value="0.5" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
         <entry key="..\:/UPT/SolucionesMoviles/NavigationTest/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22135416666666666" />
