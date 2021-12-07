@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#FFFFFF"
+    android:background="#171A21"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +85,6 @@
 
             android:layout_height="390dp"
             android:layout_gravity="bottom"
-
             android:layout_marginStart="9dp"
             android:layout_marginEnd="9dp"
             android:shadowColor="#FFFFFF"
@@ -111,9 +110,9 @@
             android:hint="Buscar"
             android:inputType="textPersonName"
             android:paddingLeft="20dp"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            android:textColorLink="#000000"
+            android:textColor="#FFF"
+            android:textColorHint="#FFF"
+            android:textColorLink="#FFF"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/imageButton"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +125,7 @@
             android:layout_height="40dp"
             android:layout_marginEnd="56dp"
             android:layout_marginBottom="28dp"
-            android:background="@color/black"
+            android:background="#22374E"
             app:layout_constraintBottom_toTopOf="@+id/lblPopulares2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txtBuscar"

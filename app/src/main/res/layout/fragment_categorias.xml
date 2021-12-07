@@ -1,10 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".categorias">
+    android:background="#171A21"
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".categorias"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="191dp">
 
-</FrameLayout>
+        <!-- TODO: Update blank fragment layout -->
+
+        <TextView
+            android:id="@+id/lbl1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="14dp"
+
+            android:fontFamily="@font/doppio_one"
+            android:letterSpacing="0.2"
+            android:paddingTop="7dp"
+            android:shadowColor="#FF4AE7"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="20"
+            android:text="PARA TI"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FF4AE7"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler1"
+            android:layout_width="375dp"
+
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="15dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+            app:layout_constraintBottom_toTopOf="@+id/lbl2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl1" />
+
+        <TextView
+            android:id="@+id/lbl2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/doppio_one"
+
+            android:letterSpacing="0.2"
+            android:paddingTop="7dp"
+            android:shadowColor="#FF4AE7"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="20"
+            android:text="FAVORITOS DE TUS AMIGOS"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FF4AE7"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler2"
+            android:layout_width="375dp"
+
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="15dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+            app:layout_constraintBottom_toTopOf="@+id/lbl3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl2" />
+
+
+        <TextView
+            android:id="@+id/lbl3"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/doppio_one"
+
+            android:letterSpacing="0.2"
+            android:paddingTop="7dp"
+            android:shadowColor="#FF4AE7"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="20"
+            android:text="TENDENCIAS EN TU PAÍS"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FF4AE7"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler2" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler3"
+            android:layout_width="375dp"
+
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="18dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+            app:layout_constraintBottom_toTopOf="@+id/lbl4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl3" />
+
+
+        <TextView
+            android:id="@+id/lbl4"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/doppio_one"
+
+            android:letterSpacing="0.2"
+            android:paddingTop="7dp"
+            android:shadowColor="#FF4AE7"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="20"
+            android:text="TUS GÉNEROS"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FF4AE7"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler4"
+            android:layout_width="375dp"
+
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+            app:layout_constraintBottom_toTopOf="@+id/lbl5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl4" />
+
+        <TextView
+            android:id="@+id/lbl5"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/doppio_one"
+
+            android:letterSpacing="0.2"
+            android:paddingTop="7dp"
+            android:shadowColor="#FF4AE7"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="20"
+            android:text="TE RECOMENDAMOS"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#FF4AE7"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/recycler5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler4" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler5"
+            android:layout_width="375dp"
+
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl5" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +49,7 @@ public class favoritos extends Fragment {
 
     private RecyclerView recyclerView;
     private ParseAdapter adapter;
-    private Vector<String> misdatos;
+
     public Vector<String> valor;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
     private String res;
@@ -109,12 +110,14 @@ public class favoritos extends Fragment {
         String usuario_sesion = intent.getStringExtra("usuario_sesion");
         Log.e("usuario_favoritos:", usuario_sesion);
 
+        DividerItemDecoration divider1 = new DividerItemDecoration(requireContext(),LinearLayoutManager.VERTICAL);
         ListaFavoritos(usuario_sesion);
         recyclerView = getView().findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ParseAdapter(parseItems, getContext());
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(divider1);
 
     }
 

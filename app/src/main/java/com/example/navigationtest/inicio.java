@@ -100,7 +100,8 @@ public class inicio extends Fragment {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        DividerItemDecoration divider1 = new DividerItemDecoration(requireContext(),LinearLayoutManager.VERTICAL);
+        recyclerView.addItemDecoration(divider1);
 
 
         adapter = new ParseAdapter(parseItems, getContext());
@@ -118,7 +119,8 @@ public class inicio extends Fragment {
         ListarTodasCategorias();
         ListarPopulares();
 
-
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),layoutManager.getOrientation());
+        recyclerViewCategoria.addItemDecoration(dividerItemDecoration);
 
         Content content = new Content();
         content.execute();
@@ -341,7 +343,7 @@ public class inicio extends Fragment {
         try {
 
             int contador =0;
-            for (int k=15;k<=100;k++){
+            for (int k=0;k<=10000;k++){
 
                 String url = "https://cheapdigitaldownload.com/catalog/category-pc-games-all/page-"+k+"/";
                 Document doc = Jsoup.connect(url).get();
@@ -352,7 +354,7 @@ public class inicio extends Fragment {
                 Log.d("doc", "doc: "+doc);
                 Log.d("data", "data: "+data);
                 Log.d("size", ""+size);
-                for (int i = 0; i < size; i++) {
+                for (int i = 0; i < 13; i++) {
                     String imgUrl = data.select("li.search-results-row")
                             .select("div.search-results-row-image-ratio")
                             .eq(i)
@@ -401,7 +403,6 @@ public class inicio extends Fragment {
                                         "&j_lanzamiento=" + URLEncoder.encode(lanzamiento_solo, "UTF-8") +
                                         "&j_genero=" + URLEncoder.encode(genero_solo, "UTF-8") +
                                         "&j_urlimagen=" + URLEncoder.encode(imagenStr, "UTF-8");
-
                                 URL url=new URL(miurl);
                                 Log.e("registro_conexion",miurl);
                                 conexion = (HttpURLConnection) url.openConnection();
@@ -424,7 +425,8 @@ public class inicio extends Fragment {
                                 Log.e("urlconecction",HttpURLConnection.HTTP_OK+"");
 
                             } catch (Exception e) { Log.e("registro_error", e.getMessage()+"Fallo al final del catch.", e);
-                            } finally { if (conexion!=null) conexion.disconnect();
+                            } finally {
+                                if (conexion != null) conexion.disconnect();
                             }
 
                         }
@@ -432,27 +434,21 @@ public class inicio extends Fragment {
 
 
 
-                    Thread.sleep(1000);
+                    Thread.sleep(1500);
 
 
                     Log.d("items", "origen: "+url+" . img: " + imgUrl + " . title: " + title + " . description: " + description + " . precio: " + precio+" . durl: "+durl);
                 }
 
 
-                Thread.sleep(2000);
+                Thread.sleep(2500);
 
 
                 Log.e("Url: ",url+"");
                 contador++;
 
             }
-
             Log.e("Contador: ",contador+"");
-
-
-
-
-
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

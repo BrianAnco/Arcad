@@ -98,8 +98,7 @@ public class DetalleJuego extends AppCompatActivity {
                         "document.getElementsByClassName('tab-content filters-section')[0].style.display='none';" +
                         "document.getElementsByClassName('zendesk__container')[0].style.display='none';" +
 
-                        "document.getElementsByClassName('page-template')[0].style.backgroundImage='none';" +
-                        "document.getElementsByClassName('page-template')[0].style. background='none';" +
+
                         "document.getElementsByClassName('page-template')[0].style.backgroundSize='10%';" +
                         "document.getElementsByClassName('page-template')[0].style.backgroundPosition='0 0';" +
                         "document.getElementsByClassName('container content')[0].style.height ='0px';" +

@@ -7,11 +7,12 @@
         <item
             android:id="@+id/inicio"
             android:icon="@drawable/ic_baseline_home_24"
+            
             android:title="@string/inicio" />
         <item
             android:id="@+id/categorias"
             android:icon="@drawable/ic_baseline_list_24"
-            android:title="Categorías" />
+            android:title="Categorias" />
         <item
             android:id="@+id/favoritos"
             android:icon="@drawable/ic_baseline_favorite_24"
